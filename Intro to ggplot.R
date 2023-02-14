@@ -21,7 +21,8 @@ plot(x = mtcars$wt, y = mtcars$mpg,
 
 ggplot()
 ggplot(mtcars, aes(x = wt, y = mpg)) + 
-  geom_point() +
+  geom_point(alpha = 0.5) +
   geom_smooth(method =lm, se = FALSE) +
   xlab("Weight") +
-  ylab("Miles per gallon")
+  ylab("Miles per gallon") +
+  theme_classic()
