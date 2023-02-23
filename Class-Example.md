@@ -3,6 +3,22 @@ Class Example
 Bobo Peterson
 2023-02-23
 
+# **This is a first level header**
+
+## This is a second level header
+
+### This is a third level header
+
+#### This is header inception (4th)
+
+*italics*
+
+*italics*
+
+**bold**
+
+> This is emphasized text
+
 ``` r
 data("mtcars")
 summary(mtcars)
@@ -29,3 +45,24 @@ summary(mtcars)
     ##  Mean   :0.4062   Mean   :3.688   Mean   :2.812  
     ##  3rd Qu.:1.0000   3rd Qu.:4.000   3rd Qu.:4.000  
     ##  Max.   :1.0000   Max.   :5.000   Max.   :8.000
+
+### Unordered lists
+
+- one item
+- second item
+- third item
+  - one more item
+    - one one more
+
+1.  The first item
+2.  The second item
+    - second unorder
+
+### Links
+
+[This is a hyperlink](https://github.com/Mam0279/ENTM6820)
+
+This is the github respository <https://github.com/Mam0279/ENTM6820>
+
+[Click to see the best character of all
+time](https://static.wikia.nocookie.net/p__/images/2/24/Stuart_Little_Hero.png/revision/latest?cb=20210425133345&path-prefix=protagonist)
