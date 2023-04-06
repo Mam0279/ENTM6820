@@ -1,0 +1,92 @@
+---
+title: "Data Wrangling"
+author: "Alec"
+date: "2023-04-01"
+output: html_document
+---
+
+install.packages("tidyverse")
+library(tidyverse)
+library(dplyr)
+
+
+```{r}
+read.csv("Microbiome.csv")
+```
+
+#Question 1   
+```{r}
+microbiome.fungi <- read.csv("Microbiome.csv")
+```
+
+```{r}
+microbiome.fungi2 <- select(microbiome.fungi, OTU, SampleID, Abundance, Crop, Compartment, DateSampled, GrowthStage, Treatment, Rep, Fungicide, Kingdom:Species, Taxonomy)
+```
+
+#Question 2
+```{r}
+Abundance_Mean <- micribiome.fungi2 %>%
+  group_by(Compartment) %>%
+  mutate(Percent = Abundance * 100) %>%
+  summarise(mean = mean(Percent))
+```
+
+#Question 3
+```{r}
+microbiome.fungi2 %>%
+  group_by(Compartment, Fungicide) %>%
+  mutate(Abundancepercent = Abundance * 100) %>%
+  summarise(Mean = mean(Abundancepercent))
+```
+
+#Question 4
+```{r}
+microbiome.fungi2 %>%
+  filter(Class == "Dothideomycetes") %>%
+  group_by(Order, Compartment, Fungicide) %>%
+  mutate(Abundancepercent = Abundance * 100) %>%
+  summarise(Mean = mean(Abundancepercent))
+```
+
+#Question 5
+```{r}
+microbiome.fungi2 %>%
+  filter(Class == "Dothideomycetes") %>%
+  group_by(Order, Compartment, Fungicide) %>%
+  mutate(Abundancepercent = Abundance * 100) %>%
+  summarise(Mean = mean(Abundancepercent))
+```
+
+#Question 6
+```{r}
+microbiome.fungi2 %>%
+  filter(Class == "Dothideomycetes") %>%
+  group_by(Order, Compartment, Fungicide) %>%
+  mutate(Abundancepercent = Abundance * 100) %>%
+  summarise(Mean = mean(Abundancepercent), 
+            n = n(), 
+            sd.dev = sd(Abundancepercent)) %>%
+  mutate(std.err = sd.dev/sqrt(n))
+```
+
+#Question 7
+```{r}
+microbiome.fungi2 %>%
+  select(Order, Compartment, Fungicide, Mean) %>%
+  pivot_wider(names_from = Compartment, values_from = Mean)
+```
+
+#Question 8
+```{r}
+microbiome.fungi2 %>%
+  filter(Class == "Dothideomycetes") %>%
+  group_by(Order, Compartment, Fungicide) %>%
+  mutate(Abundancepercent = Abundance * 100) %>%
+  summarise(Mean = mean(Abundancepercent) %>%
+  select(Order, Compartment, Fungicide, Mean) %>%
+  pivot_wider(names_from = Compartment, values_from = Mean) %>%
+  ggplot(aes(x = reorder(Order, Root), y = Root, fill = Fungicide)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  ylab("Percent relative abundance") +
+  xlab("") + 
+```
